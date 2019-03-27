@@ -43,10 +43,10 @@ app.get('/', (request, response) => {
 //     next();
 // });
 
-app.use((request, response, next) => {
-    response.render('down.hbs');
-    next();
-});
+// app.use((request, response, next) => {
+//     response.render('down.hbs');
+//     next();
+// });
 
 app.get('/info', (request, response) => {
     response.render('about.hbs', {
