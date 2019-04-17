@@ -48,7 +48,7 @@ app.get('/nasa', (request, response) => {
     };
     list = getImages(q);
     list.then(function (value) {
-        console.log(value);
+        // console.log(value);
         response.render('nasa.hbs', {
             images: value[0],
             images1:value[1],
@@ -61,27 +61,40 @@ app.get('/nasa', (request, response) => {
 });
 
 app.get('/cards', (request, response) => {
-    x = 5;
+    x = request.query.cards;
     num = request.query.cards;
     var getCards = async (x) => {
+        array = [];
         body = await axious.get(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`);
         deck_id = body.data.deck_id;
         draw = await axious.get(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=${x}`);
         cards = draw.data.cards;
+        console.log(cards);
 
-        return cards
+        length = cards.length;
+        console.log(length);
+        for(var i =0; i < length; i++){
+            array.push(cards[i].images.png)
+        }
+        console.log(array);
+        return array
     };
 
     cards = getCards(x);
     cards.then(function (values) {
-        console.log(values[0].images.png);
         response.render("cards.hbs", {
             // title:"Page 1"
-            cards: values[0].images.png,
-            cards1: values[1].images.png,
-            cards2: values[2].images.png,
-            cards3: values[3].images.png,
-            cards4: values[4].images.png,
+            cards: values[0],
+            cards1: values[1],
+            cards2: values[2],
+            cards3: values[3],
+            cards4: values[4],
+            cards5: values[5],
+            cards6: values[6],
+            cards7: values[7],
+            cards8: values[8],
+            cards9: values[9],
+
         })
     });
 
