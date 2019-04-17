@@ -14,17 +14,17 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 app.set('view engine', 'hbs');
 
-hbs.registerHelper('down', () => {
-    return 'Site down'
-});
+// hbs.registerHelper('down', () => {
+//     return 'Site down'
+// });
 
-hbs.registerHelper('getCurrentYear', () => {
-    return new Date().getFullYear()
-});
+// hbs.registerHelper('getCurrentYear', () => {
+//     return new Date().getFullYear()
+// });
 
-hbs.registerHelper('message', (text) => {
-    return text.toUpperCase()
-});
+// hbs.registerHelper('message', (text) => {
+//     return text.toUpperCase()
+// });
 
 
 
@@ -42,12 +42,12 @@ app.use(bodyParser.urlencoded({
 
 
 
-app.listen(8080, () => {
+app.listen(port, () => {
     console.log('Server is up on the port 8080');
     utils.init();
 });
 
-//Change back to false
+
 var authenticated = false;
 var user_name = null;
 
@@ -363,6 +363,3 @@ var send_name = (name) =>{
 
 
 
-app.listen(port, () => {
-    console.log("Server running on port 8080");
-});
