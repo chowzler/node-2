@@ -23,15 +23,39 @@ app.get('/', (request, response) => {
 });
 
 app.get('/nasa', (request, response) => {
-    x = request.query.images;
-    console.log(x);
-    response.render('nasa.hbs', {
-        // images: x,
-        // images: x,
-        // images: x,
-        // images: x,
-        // images: x,
-        // images: x,
+    q = "mars";
+    q = request.query.images;
+
+    var getImages = async (q) =>{
+        listing = [];
+        body = await axious.get(`https://images-api.nasa.gov/search?q=${q}`);
+        images = body.data;
+        // listing.push(images.collection.items[6]);
+        var img1 =  (images.collection.items[6].links[0].href);
+        var img2 =  (images.collection.items[7].links[0].href);
+        var img3 =  (images.collection.items[8].links[0].href);
+
+        // length = images.collection.items.length;
+        // console.log(length);
+        // for(var i =0; i < length; i++){
+        //
+        // }
+        listing.push(img1);
+        listing.push(img2);
+        listing.push(img3);
+
+        return listing
+    };
+    list = getImages(q);
+    list.then(function (value) {
+        console.log(value);
+        response.render('nasa.hbs', {
+            images: value[0],
+            images1:value[1],
+            images2:value[2]
+
+        });
+
 
     });
 });
@@ -42,13 +66,13 @@ app.get('/cards', (request, response) => {
     var getCards = async (x) => {
         body = await axious.get(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`);
         deck_id = body.data.deck_id;
-        draw = await axious.get(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=5`);
+        draw = await axious.get(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=${x}`);
         cards = draw.data.cards;
 
         return cards
     };
 
-    cards = getCards();
+    cards = getCards(x);
     cards.then(function (values) {
         console.log(values[0].images.png);
         response.render("cards.hbs", {
