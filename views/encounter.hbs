@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../app.js"></script>
+    <meta charset="utf-8">
+    <title>Main page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="backgroundstyle2">
+<h5 class="textstyle1">Foe Level: {{foe_level}} <br>
+    Foe HP: {{foe_hp_current}}/{{foe_hp_max}} <br>
+
+</h5>
+<h5 class="textstyle1">
+    Player: {{player_name}}<br>
+    Level: {{player_level}}<br>
+    HP: {{player_hp_current}}/{{player_hp_max}}<br>
+    EXP: {{player_exp}}
+</h5>
+<p class="textstyle2">
+    {{player_damage}}<br>
+    {{foe_damage}}
+    {{outcome}}
+</p>
+
+<form method="get" action="fight">
+    <button  type="submit" class="button">Attack</button>
+</form>
+
+<form method="post" action="save">
+    <button  type="submit" class="button">Save</button>
+</form>
+
+</body>
+
+</html>
