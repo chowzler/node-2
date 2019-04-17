@@ -14,7 +14,6 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 app.set('view engine', 'hbs');
 
-app.set('view engine', 'hbs');
 
 app.get('/', (request, response) => {
 
@@ -60,7 +59,7 @@ app.get('/error', (request, response) => {
 });
 
 app.get('/page2', (request, response) => {
-    response.render('down.hbs', {
+    response.render('page2.hbs', {
         title: '222222222222222',
 
     });
